@@ -5,7 +5,6 @@ import { IonicModule } from '@ionic/angular';
 import { PageButtonComponent } from 'src/app/ui-controls/components/buttons/page-button/page-button.component';
 import { HeaderComponent } from 'src/app/ui-controls/components/header/header.component';
 import { UiComponentsModule } from 'src/app/ui-controls/components/ui-components.module';
-
 import { HomePage } from './home.page';
 
 describe('HomePage', () => {
@@ -38,7 +37,7 @@ describe('HomePage', () => {
     fixtureButtonComponent.detectChanges();
   }));
 
-  it('should create', () => {
+  fit('should create', () => {
     expect(component).toBeTruthy();
   });
 

@@ -8,12 +8,6 @@ export class UserService {
 
   private currentUser: User | undefined = undefined;
 
-  constructor() { }
-
-  /* public get currentUserValue(): string {
-    return this.currentUserSubject$.value;
-  } */
-
   /**
    * Add or update an user.
    * @param user User data.
