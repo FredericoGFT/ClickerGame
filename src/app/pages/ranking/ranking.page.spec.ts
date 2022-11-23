@@ -1,5 +1,7 @@
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import { UiComponentsModule } from 'src/app/ui-controls/components/ui-components.module';
 
 import { RankingPage } from './ranking.page';
 
@@ -10,7 +12,7 @@ describe('RankingPage', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ RankingPage ],
-      imports: [IonicModule.forRoot()]
+      imports: [UiComponentsModule, ScrollingModule, IonicModule.forRoot()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(RankingPage);

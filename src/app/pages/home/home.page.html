@@ -4,7 +4,9 @@
   <form [formGroup]="formData" (submit)="onSubmit()">
     <ion-item>
       <ion-label position="floating">Name*</ion-label>
-      <ion-input placeholder="Enter name" required type="text" formControlName="name"></ion-input>
+      <ion-input placeholder="Enter name"
+        required type="text" maxlength="15"
+        formControlName="name"></ion-input>
     </ion-item>
     <!-- Error messages -->
     <div class="errors">
@@ -13,9 +15,6 @@
       </span>
       <span class="errors__error ion-padding" *ngIf="isSubmitted && errorControl['name'].hasError('minlength')">
         Name should be min 2 chars long.
-      </span>
-      <span class="errors__error ion-padding" *ngIf="isSubmitted && errorControl['name'].hasError('maxLength')">
-        Name should be max 15 chars long.
       </span>
     </div>
     <app-page-button text="JOIN" [submitForm]=true></app-page-button>

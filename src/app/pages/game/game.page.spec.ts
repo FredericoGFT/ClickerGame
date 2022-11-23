@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import { UiComponentsModule } from 'src/app/ui-controls/components/ui-components.module';
 
 import { GamePage } from './game.page';
 
@@ -10,7 +11,7 @@ describe('GamePage', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [GamePage],
-      imports: [IonicModule.forRoot()]
+      imports: [UiComponentsModule, IonicModule.forRoot()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(GamePage);
