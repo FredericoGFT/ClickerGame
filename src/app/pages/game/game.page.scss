@@ -1,0 +1,24 @@
+.container {
+  text-align: center;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  strong {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .restarting-info {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+
+    span {
+      margin-top: auto;
+    }
+  }
+}

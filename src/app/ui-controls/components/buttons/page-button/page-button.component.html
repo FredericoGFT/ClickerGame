@@ -1,0 +1,10 @@
+<ion-button *ngIf="this.submitForm" type="submit" expand="block">{{this.text}}</ion-button>
+
+<ion-button
+  *ngIf="!this.submitForm"
+  [disabled]="this.disabled"
+  (click)="sendClick()"
+  expand="block">
+  <ion-icon *ngIf="this.icon !== ''" slot="start" name="{{this.icon}}"></ion-icon>
+  {{this.text}}
+</ion-button>

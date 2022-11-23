@@ -1,0 +1,28 @@
+<app-header
+  title={{title}}
+  iconName="log-out-outline"
+  (headerEvent)="exitPage()"></app-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <strong>Merged pull requests: {{score}}</strong>
+    <app-page-button
+      text="MERGE"
+      icon="arrow-up-outline"
+      (clickEvent)="merge()"></app-page-button>
+    <app-page-button
+      *ngIf="showAutoMergeButton"
+      text="BUY AUTO MERGE ({{autoClickerCost}})"
+      icon="cart-outline"
+      [disabled]=disabledAutoMerge
+      (clickEvent)="autoMerge()"></app-page-button>
+    <div class="restarting-info">
+      <span>Restarting is not frowned upon if you get overwhelmed</span>
+    </div>
+    <app-page-button
+      text="RESTART"
+      icon="reload-outline"
+      (clickEvent)="restart()"></app-page-button>
+  </div>
+</ion-content>
+<app-page-button text="RANKING" (clickEvent)="goRanking()"></app-page-button>

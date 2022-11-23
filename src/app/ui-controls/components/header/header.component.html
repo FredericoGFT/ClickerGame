@@ -1,0 +1,10 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <div class="title-conted">
+        <span>{{title}}</span>
+        <ion-icon *ngIf="iconName !== ''" name="{{iconName}}" (click)="headerClick()"></ion-icon>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
