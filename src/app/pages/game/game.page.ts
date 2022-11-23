@@ -31,6 +31,10 @@ export class GamePage implements OnInit {
     this.router.events.subscribe(
       (event: NavigationEvent) => this.manageNaviagtionEvent(event));
 
+      this.userService.browserClose().subscribe(() => {
+        this.saveUser();
+      });
+
     this.getUser();
   }
 

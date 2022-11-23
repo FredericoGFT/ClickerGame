@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { UserService } from './ui-controls/services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+
+  @HostListener('window:beforeunload')
+  async ngOnDestroy()
+  {
+    await this.userService.onBrowserClose();
+  }
+
+  constructor(
+    private userService: UserService) {}
 }

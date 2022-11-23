@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,15 @@ import { User } from '../models/user';
 export class UserService {
 
   private currentUser: User | undefined = undefined;
+  private browserClose$ = new Subject<any>();
+
+  public onBrowserClose() {
+    this.browserClose$.next(true);
+  }
+
+  public browserClose(): Observable<any> {
+    return this.browserClose$.asObservable();
+  }
 
   /**
    * Add or update an user.
