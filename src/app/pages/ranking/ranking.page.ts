@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { User } from 'src/app/ui-controls/models/user';
-import { UserService } from 'src/app/ui-controls/services/user.service';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-ranking',
@@ -27,10 +27,7 @@ export class RankingPage implements OnInit {
 
   private getUsersList() {
     const tempUsers = this.userService.getUsers();
-    if (tempUsers.length > 0) {
-      this.users = tempUsers.sort(function(a, b) {
-        return b.score - a.score;
-      });
-    }
+    if (tempUsers.length > 0)
+      this.users = tempUsers.sort((a, b) => b.score - a.score);
   }
 }

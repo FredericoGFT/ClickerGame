@@ -4,7 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { GamePage } from './game.page';
 import { GamePageRoutingModule } from './game-routing.module';
-import { UiComponentsModule } from 'src/app/ui-controls/components/ui-components.module';
+import { UiComponentsModule } from 'src/app/ui-controls/ui-components.module';
 
 @NgModule({
   imports: [

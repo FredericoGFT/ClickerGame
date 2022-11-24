@@ -5,8 +5,8 @@ import { IonicModule } from '@ionic/angular';
 import { RankingPageRoutingModule } from './ranking-routing.module';
 import { RankingPage } from './ranking.page';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { UiComponentsModule } from 'src/app/ui-controls/components/ui-components.module';
-import { UiPipesModule } from 'src/app/ui-controls/pipes/ui-pipes.module';
+import { UiComponentsModule } from 'src/app/ui-controls/ui-components.module';
+import { UiPipesModule } from 'src/app/pipes/ui-pipes.module';
 
 @NgModule({
   imports: [

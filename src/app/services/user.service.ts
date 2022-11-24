@@ -28,7 +28,7 @@ export class UserService {
 
     if (users.length > 0) {
       const userFound = users.find(u => u.name == user.name);
-      if (userFound != undefined) {
+      if (userFound) {
         this.updateUser(user, users, userFound);
         this.currentUser = userFound;
       }
@@ -69,7 +69,6 @@ export class UserService {
     if (user.score > 0) {
       const index = users.indexOf(userFound);
       users[index] = user;
-      this.currentUser = user;
     }
   }
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, NavigationEnd, Event as NavigationEvent  } from '@angular/router';
-import { User } from 'src/app/ui-controls/models/user';
-import { UserService } from 'src/app/ui-controls/services/user.service';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +29,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.router.events.subscribe(
-      (event: NavigationEvent) => this.manageNaviagtionEvent(event));
+      (event: NavigationEvent) => this.manageNavigationEvent(event));
   }
 
   get errorControl() {
@@ -45,7 +45,7 @@ export class HomePage implements OnInit {
     }
   }
 
-  private manageNaviagtionEvent(event: NavigationEvent){
+  private manageNavigationEvent(event: NavigationEvent){
     if(event instanceof NavigationEnd && event.url === '/home') {
       this.formData.controls['name'].setValue('');
       this.formData.reset();

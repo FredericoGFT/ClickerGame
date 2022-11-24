@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-import { UiComponentsModule } from 'src/app/ui-controls/components/ui-components.module';
+import { UiComponentsModule } from 'src/app/ui-controls/ui-components.module';
 
 import { GamePage } from './game.page';
 

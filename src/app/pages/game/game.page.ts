@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, NavigationStart, Event as NavigationEvent, NavigationEnd  } from '@angular/router';
 import { Location } from '@angular/common';
-import { User } from 'src/app/ui-controls/models/user';
-import { UserService } from 'src/app/ui-controls/services/user.service';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-game',
@@ -29,17 +29,18 @@ export class GamePage implements OnInit {
 
   ngOnInit() {
     this.router.events.subscribe(
-      (event: NavigationEvent) => this.manageNaviagtionEvent(event));
+      (event: NavigationEvent) => this.manageNavigationEvent(event));
 
       this.userService.browserClose().subscribe(() => {
         this.saveUser();
+        this.clearInterval();
       });
 
     this.getUser();
   }
 
   merge() {
-    if (this.user != undefined) {
+    if (this.user) {
       this.score += 1;
       this.enabledAutoMerge();
     }
@@ -67,20 +68,22 @@ export class GamePage implements OnInit {
 
   goRanking() {
     this.saveUser();
+    this.clearInterval();
     this.router.navigate(['/ranking']);
   }
 
-  exitPage() {
+  exit() {
     this.saveUser();
+    this.clearInterval();
     this.router.events.subscribe().unsubscribe();
     this.location.back();
   }
 
-  private manageNaviagtionEvent(event: NavigationEvent){
+  private manageNavigationEvent(event: NavigationEvent){
     // Acces from login after reload navigator.
     if(event instanceof NavigationStart
       && event.url === '/game' && event.restoredState == null
-      && this.user == undefined) {
+      && !this.user) {
         this.getUser();
     }
     // Back from ranting.
@@ -91,10 +94,10 @@ export class GamePage implements OnInit {
   }
 
   private getUser() {
-    if (this.user == undefined)
+    if (!this.user)
       this.user = this.userService.getCurrentUser();
 
-    if (this.user != undefined) {
+    if (this.user) {
       this.title = `Hi ${this.user.name}!`;
       this.score = this.user.score;
       this.autoClikers = this.user.autoClikers;
@@ -130,12 +133,14 @@ export class GamePage implements OnInit {
   }
 
   private saveUser() {
-    if (this.user != undefined) {
+    if (this.user) {
       this.user.score = this.score;
       this.user.autoClikers = this.autoClikers;
       this.userService.setUser(this.user);
     }
+  }
 
+  private clearInterval() {
     this.intervals.forEach(interval => {
       clearInterval(interval);
     });

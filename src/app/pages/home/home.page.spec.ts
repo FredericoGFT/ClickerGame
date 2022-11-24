@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { IonicModule } from '@ionic/angular';
-import { PageButtonComponent } from 'src/app/ui-controls/components/buttons/page-button/page-button.component';
-import { HeaderComponent } from 'src/app/ui-controls/components/header/header.component';
-import { UiComponentsModule } from 'src/app/ui-controls/components/ui-components.module';
+import { PageButtonComponent } from 'src/app/ui-controls/page-button/page-button.component';
+import { HeaderComponent } from 'src/app/ui-controls/header/header.component';
+import { UiComponentsModule } from 'src/app/ui-controls/ui-components.module';
 import { HomePage } from './home.page';
 
 describe('HomePage', () => {

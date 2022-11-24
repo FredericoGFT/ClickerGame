@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { UserService } from './ui-controls/services/user.service';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
