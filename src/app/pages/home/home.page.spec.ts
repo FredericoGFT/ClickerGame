@@ -37,11 +37,11 @@ describe('HomePage', () => {
     fixtureButtonComponent.detectChanges();
   }));
 
-  fit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Component header has title', () => {
+  it('Component header should has title', () => {
     expect(headerComponent).toBeTruthy();
     const compiledHeader = fixtureHeaderComponent.debugElement.nativeElement;
     expect(compiledHeader.innerHTML).toContain(title);

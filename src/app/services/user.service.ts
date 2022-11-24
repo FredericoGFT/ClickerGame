@@ -7,6 +7,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class UserService {
 
+  private localStorageKey = 'gameUsers';
   private currentUser: User | undefined = undefined;
   private browserClose$ = new Subject<any>();
 
@@ -27,7 +28,7 @@ export class UserService {
     this.currentUser = user;
 
     if (users.length > 0) {
-      const userFound = users.find(u => u.name == user.name);
+      const userFound = users.find(u => u.name === user.name);
       if (userFound) {
         this.updateUser(user, users, userFound);
         this.currentUser = userFound;
@@ -52,8 +53,8 @@ export class UserService {
   private getLocalStorageUsers(): User[] {
     let users: User[] = [];
 
-    let storageUsers = localStorage.getItem('gameUsers');
-    if (storageUsers != null) {
+    let storageUsers = localStorage.getItem(this.localStorageKey);
+    if (storageUsers !== null) {
       const data = JSON.parse(storageUsers);
       users = <User[]>data;
     }
@@ -62,7 +63,7 @@ export class UserService {
 
   private setLocalStorageUsers(users: User[]) {
     const storageUsers = JSON.stringify(users);
-    localStorage.setItem('gameUsers', storageUsers);
+    localStorage.setItem(this.localStorageKey, storageUsers);
   }
 
   private updateUser(user: User, users: User[], userFound: User) {

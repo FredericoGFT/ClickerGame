@@ -15,21 +15,29 @@ describe('UserService', () => {
     expect(service).toBeTruthy();
   });
 
+  it('onBrowserClose shold be called', (done) => {
+    service.browserClose().subscribe(() => done());
+
+    spyOn(service, 'onBrowserClose').and.callThrough();
+    service.onBrowserClose();
+    expect(service.onBrowserClose).toHaveBeenCalled();
+  });
+
   it('setUser should store an user', () => {
-    const user: User = { name: 'test', score: 5, autoClikers: 1 };
+    const user: User = { name: 'test', score: 105, autoClikers: 11 };
     service.setUser(user);
 
     const currentUser = service.getCurrentUser();
-    expect(currentUser != undefined).toBe(true);
+    expect(currentUser !== undefined).toBe(true);
     expect(currentUser?.name).toBe(user.name);
 
     const users = localStorage.getItem('gameUsers');
-    expect(users != null).toBe(true);
+    expect(users !== null).toBe(true);
     expect(users?.length).toBeGreaterThan(0);
-    if (users != null) {
+    if (users !== null) {
       const storageUsers = JSON.parse(users) as User[];
-      const userFound = storageUsers.find(u => u.name == user.name);
-      expect(userFound != undefined).toBe(true);
+      const userFound = storageUsers.find(u => u.name === user.name);
+      expect(userFound !== undefined).toBe(true);
       expect(userFound?.name).toBe(user.name);
     }
   });
@@ -41,12 +49,12 @@ describe('UserService', () => {
     service.setUser(user2);
 
     const users = localStorage.getItem('gameUsers');
-    expect(users != null).toBe(true);
+    expect(users !== null).toBe(true);
     expect(users?.length).toBeGreaterThan(1);
-    if (users != null) {
+    if (users !== null) {
       const storageUsers = JSON.parse(users) as User[];
-      const userFound = storageUsers.find(u => u.name == user2.name);
-      expect(userFound != undefined).toBe(true);
+      const userFound = storageUsers.find(u => u.name === user2.name);
+      expect(userFound !== undefined).toBe(true);
       expect(userFound?.name).toBe(user2.name);
     }
   });
@@ -58,18 +66,18 @@ describe('UserService', () => {
     service.setUser(user);
 
     const users = localStorage.getItem('gameUsers');
-    expect(users != null).toBe(true);
+    expect(users !== null).toBe(true);
     expect(users?.length).toBeGreaterThan(0);
-    if (users != null) {
+    if (users !== null) {
       const storageUsers = JSON.parse(users) as User[];
-      const userFound = storageUsers.find(u => u.name == user.name);
-      expect(userFound != undefined).toBe(true);
+      const userFound = storageUsers.find(u => u.name === user.name);
+      expect(userFound !== undefined).toBe(true);
       expect(userFound?.score).toBe(user.score);
     }
   });
 
   it('getUsers should get stored user', () => {
-    const users: User[] = [{ name: 'test', score: 5, autoClikers: 1 }];
+    const users: User[] = [{ name: 'test', score: 105, autoClikers: 11 }];
 
     const jsonUsers = JSON.stringify(users);
     localStorage.setItem('gameUsers', jsonUsers);
@@ -77,8 +85,8 @@ describe('UserService', () => {
     const storageUsers = service.getUsers();
     expect(storageUsers.length).toBeGreaterThan(0);
 
-    const userFound = storageUsers.find(u => u.name == users[0].name);
-    expect(userFound != undefined).toBe(true);
+    const userFound = storageUsers.find(u => u.name === users[0].name);
+    expect(userFound !== undefined).toBe(true);
   });
 
 });

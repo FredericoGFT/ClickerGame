@@ -82,7 +82,7 @@ export class GamePage implements OnInit {
   private manageNavigationEvent(event: NavigationEvent){
     // Acces from login after reload navigator.
     if(event instanceof NavigationStart
-      && event.url === '/game' && event.restoredState == null
+      && event.url === '/game' && event.restoredState === null
       && !this.user) {
         this.getUser();
     }
@@ -109,6 +109,7 @@ export class GamePage implements OnInit {
 
   private autoMergeValues() {
     this.autoClickerCost = this.autoClickerBaseCost + (this.autoClickerBaseCost * this.autoClikers);
+
     if (this.autoClikers > 0) {
       for(let i = 0; i < this.autoClikers; i++) {
         this.intervals.push(setInterval(() => {
@@ -117,6 +118,11 @@ export class GamePage implements OnInit {
       }
       this.showAutoMergeButton = true;
       this.disabledAutoMerge = true;
+    }
+
+    if (this.user && this.user.score >= this.autoClickerCost) {
+      this.showAutoMergeButton = true;
+      this.disabledAutoMerge = false;
     }
   }
 
