@@ -66,9 +66,7 @@ export class UserService {
   }
 
   private updateUser(user: User, users: User[], userFound: User) {
-    if (user.score > 0) {
-      const index = users.indexOf(userFound);
-      users[index] = user;
-    }
+    const index = users.indexOf(userFound);
+    users[index] = user;
   }
 }

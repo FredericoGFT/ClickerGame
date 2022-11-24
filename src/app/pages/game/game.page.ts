@@ -58,12 +58,12 @@ export class GamePage implements OnInit {
 
   restart() {
     this.score = 0;
+    this.autoClikers = 0;
     this.autoClickerCost = this.autoClickerBaseCost;
     this.showAutoMergeButton = false;
-    this.intervals.forEach(interval => {
-      clearInterval(interval);
-    });
+    this.clearInterval();
     this.intervals = [];
+    this.saveUser();
   }
 
   goRanking() {
@@ -109,7 +109,7 @@ export class GamePage implements OnInit {
 
   private autoMergeValues() {
     this.autoClickerCost = this.autoClickerBaseCost + (this.autoClickerBaseCost * this.autoClikers);
-    if (this.score >= this.autoClickerBaseCost) {
+    if (this.autoClikers > 0) {
       for(let i = 0; i < this.autoClikers; i++) {
         this.intervals.push(setInterval(() => {
           this.timeAutoMerge();
