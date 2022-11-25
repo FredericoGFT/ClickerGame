@@ -11,11 +11,17 @@ export class UserService {
   private currentUser: User | undefined = undefined;
   private browserClose$ = new Subject<any>();
 
+  /**
+   * Rise browser close event.
+   */
   public onBrowserClose() {
     this.browserClose$.next(true);
   }
 
-  public browserClose(): Observable<any> {
+  /**
+   * Get observable for browser close event.
+   */
+  public getBrowserClose(): Observable<any> {
     return this.browserClose$.asObservable();
   }
 
@@ -42,10 +48,16 @@ export class UserService {
     this.setLocalStorageUsers(users);
   }
 
+  /**
+   * Return the current user.
+   */
   public getCurrentUser(): User | undefined {
     return this.currentUser;
   }
 
+  /**
+   * Get array users from local storage.
+   */
   public getUsers(): User[] {
     return this.getLocalStorageUsers();
   }

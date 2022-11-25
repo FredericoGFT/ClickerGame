@@ -15,10 +15,19 @@ describe('HeaderComponent', () => {
 
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
+    component.iconName = 'something';
     fixture.detectChanges();
   }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit on click', () => {
+    spyOn(component.headerEvent, 'emit');
+    const button = fixture.nativeElement.querySelector('ion-icon');
+    button.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(component.headerEvent.emit).toHaveBeenCalled();
+ });
 });

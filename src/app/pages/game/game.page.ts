@@ -31,21 +31,27 @@ export class GamePage implements OnInit {
     this.router.events.subscribe(
       (event: NavigationEvent) => this.manageNavigationEvent(event));
 
-      this.userService.browserClose().subscribe(() => {
-        this.saveUser();
-        this.clearInterval();
-      });
+    this.userService.getBrowserClose().subscribe(() => {
+      this.saveUser();
+      this.clearIntervals();
+    });
 
     this.getUser();
   }
 
+  /**
+   * Add a new point.
+   */
   merge() {
     if (this.user) {
-      this.score += 1;
+      this.score++;
       this.enabledAutoMerge();
     }
   }
 
+  /**
+   * Start an auto merge action.
+   */
   autoMerge() {
     this.autoClickerCost += this.autoClickerBaseCost;
     this.disabledAutoMerge = true;
@@ -56,25 +62,33 @@ export class GamePage implements OnInit {
     }, 100));
   }
 
+  /**
+   * Returns the game to the init state.
+   */
   restart() {
     this.score = 0;
     this.autoClikers = 0;
     this.autoClickerCost = this.autoClickerBaseCost;
     this.showAutoMergeButton = false;
-    this.clearInterval();
-    this.intervals = [];
+    this.clearIntervals();
     this.saveUser();
   }
 
+  /**
+   * Navigate to the Ranking page.
+   */
   goRanking() {
     this.saveUser();
-    this.clearInterval();
+    this.clearIntervals();
     this.router.navigate(['/ranking']);
   }
 
+  /**
+   * Exit the game, go to the Home page.
+   */
   exit() {
     this.saveUser();
-    this.clearInterval();
+    this.clearIntervals();
     this.router.events.subscribe().unsubscribe();
     this.location.back();
   }
@@ -107,6 +121,9 @@ export class GamePage implements OnInit {
       this.router.navigate(['/']);
   }
 
+  /**
+   * Set auto merge values from user data.
+   */
   private autoMergeValues() {
     this.autoClickerCost = this.autoClickerBaseCost + (this.autoClickerBaseCost * this.autoClikers);
 
@@ -126,11 +143,17 @@ export class GamePage implements OnInit {
     }
   }
 
+  /**
+   * Do an auto merge action.
+   */
   private timeAutoMerge() {
     this.score += 1;
     this.enabledAutoMerge();
   }
 
+  /**
+   * If the score is enough, show the atuo merge button.
+   */
   private enabledAutoMerge() {
     if (this.score >= this.autoClickerCost) {
       this.showAutoMergeButton = true;
@@ -138,6 +161,9 @@ export class GamePage implements OnInit {
     }
   }
 
+  /**
+   * Save user data.
+   */
   private saveUser() {
     if (this.user) {
       this.user.score = this.score;
@@ -146,9 +172,13 @@ export class GamePage implements OnInit {
     }
   }
 
-  private clearInterval() {
+  /**
+   * Clear all intervals.
+   */
+  private clearIntervals() {
     this.intervals.forEach(interval => {
       clearInterval(interval);
     });
+    this.intervals = [];
   }
 }

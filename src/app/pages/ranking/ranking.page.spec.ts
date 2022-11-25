@@ -13,7 +13,9 @@ describe('RankingPage', () => {
   let fixture: ComponentFixture<RankingPage>;
   let headerComponent: HeaderComponent;
   let fixtureHeaderComponent: ComponentFixture<HeaderComponent>;
+  const users: User[] = [{ name: 'test', score: 49, autoClikers: 0 }];
   const title = 'Ranking';
+  const iconName = 'return-down-back-outline';
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -24,8 +26,10 @@ describe('RankingPage', () => {
     fixture = TestBed.createComponent(RankingPage);
     fixtureHeaderComponent = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
+    component.users = users;
     headerComponent = fixtureHeaderComponent.componentInstance;
     headerComponent.title = title;
+    headerComponent.iconName = iconName;
     fixture.detectChanges();
     fixtureHeaderComponent.detectChanges();
   }));
@@ -38,18 +42,19 @@ describe('RankingPage', () => {
     expect(headerComponent).toBeTruthy();
     const compiledHeader = fixtureHeaderComponent.debugElement.nativeElement;
     expect(compiledHeader.innerHTML).toContain(title);
+    expect(compiledHeader.innerHTML).toContain(iconName);
   });
 
   it('User values should be displayed', () => {
-    const users: User[] = [{ name: 'test', score: 105, autoClikers: 11 }];
+    const users: User[] = [{ name: 'test', score: 49, autoClikers: 0 }];
 
     const jsonUsers = JSON.stringify(users);
     localStorage.setItem('gameUsers', jsonUsers);
     fixture.detectChanges();
 
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.innerHTML).toContain(users[0].name);
-    expect(compiled.innerHTML).toContain(users[0].score.toString());
-    expect(compiled.innerHTML).toContain(users[0].autoClikers.toString());
+    const compiledHTML = fixture.debugElement.nativeElement.innerHTML;
+    expect(compiledHTML).toContain(users[0].name);
+    expect(compiledHTML).toContain(users[0].score);
+    expect(compiledHTML).toContain(users[0].autoClikers);
   });
 });

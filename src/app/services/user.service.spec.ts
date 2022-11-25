@@ -16,7 +16,7 @@ describe('UserService', () => {
   });
 
   it('onBrowserClose shold be called', (done) => {
-    service.browserClose().subscribe(() => done());
+    service.getBrowserClose().subscribe(() => done());
 
     spyOn(service, 'onBrowserClose').and.callThrough();
     service.onBrowserClose();
@@ -24,7 +24,7 @@ describe('UserService', () => {
   });
 
   it('setUser should store an user', () => {
-    const user: User = { name: 'test', score: 105, autoClikers: 11 };
+    const user: User = { name: 'test', score: 49, autoClikers: 11 };
     service.setUser(user);
 
     const currentUser = service.getCurrentUser();
@@ -43,9 +43,9 @@ describe('UserService', () => {
   });
 
   it('setUser should store a second user', () => {
-    const user: User = { name: 'test01', score: 5, autoClikers: 0 };
+    const user: User = { name: 'test', score: 49, autoClikers: 11 };
     service.setUser(user);
-    const user2: User = { name: 'test02', score: 75, autoClikers: 1 };
+    const user2: User = { name: 'test2', score: 75, autoClikers: 1 };
     service.setUser(user2);
 
     const users = localStorage.getItem('gameUsers');
@@ -60,9 +60,9 @@ describe('UserService', () => {
   });
 
   it('setUser should update an user', () => {
-    let user: User = { name: 'test03', score: 5, autoClikers: 0 };
+    let user: User = { name: 'test', score: 5, autoClikers: 11 };
     service.setUser(user);
-    user.score = 10;
+    user.score = 49;
     service.setUser(user);
 
     const users = localStorage.getItem('gameUsers');
@@ -77,7 +77,7 @@ describe('UserService', () => {
   });
 
   it('getUsers should get stored user', () => {
-    const users: User[] = [{ name: 'test', score: 105, autoClikers: 11 }];
+    const users: User[] = [{ name: 'test', score: 49, autoClikers: 0 }];
 
     const jsonUsers = JSON.stringify(users);
     localStorage.setItem('gameUsers', jsonUsers);

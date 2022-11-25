@@ -21,4 +21,12 @@ describe('PageButtonComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit on click', () => {
+    spyOn(component.clickEvent, 'emit');
+    const button = fixture.nativeElement.querySelector('ion-button');
+    button.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(component.clickEvent.emit).toHaveBeenCalled();
+ });
 });
