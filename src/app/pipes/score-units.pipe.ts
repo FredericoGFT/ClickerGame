@@ -16,7 +16,6 @@ export class ScoreUnitsPipe implements PipeTransform {
     const digits = value.toString().length;
     switch (true) {
       case digits > 18:
-        result;
         break;
       case digits > 15:
         result += ' p';
@@ -34,7 +33,6 @@ export class ScoreUnitsPipe implements PipeTransform {
         result += ' k';
         break;
       default:
-        result;
         break;
     }
     return result;
